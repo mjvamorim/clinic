@@ -1,0 +1,3 @@
+Email de recuperacao de senha erro
+Trocar rota do console para /admin
+Fazer a pagina setting com imagem e troca de senha

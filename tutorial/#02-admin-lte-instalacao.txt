@@ -1,95 +1,47 @@
-$ laravel new clinic
-$ cd clinic
-$ php artisan make:model Models\\Doctor -m
-$ php artisan make:controller AdminController
-$ php artisan make:controller DoctorController
-$ php artisan make:auth
+https://github.com/jeroennoten/Laravel-AdminLTE#1-installation
 
-/* Criar Banco de dados no MySQL */
-/* Editar o arquivo '.env' 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=clinic
-DB_USERNAME=root
-DB_PASSWORD=root
-LOCALE=pt-br
-*/
+$ composer require jeroennoten/laravel-adminlte
 
-/* Editar config/app.php
-   'locale' => env('LOCALE','en'),
-*/
+/*******  config/app.php
+    JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+*******/
 
-/******** Editar database/migrations/....create_doctors_table.php
-public function up()
-    {
-        Schema::create('doctors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('zipcode')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('district')->nullable();
-            $table->string('state')->default('RJ')->nullable();
-            $table->string('contry')->default('Brasil')->nullable();
-            $table->string('email')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('phone')->nullable();
-            $table->timestamps();
-        });
-    }
-****************/
+$ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProvider" --tag=assets
+$ php artisan make:adminlte
+$ php artisan vendor:publish --provider="JeroenNoten\LaravelAdminLte\ServiceProvider" --tag=config
 
-/******** Editar app/Models/Medico.php
 
-class Doctor extends Model
+/* AdminController
+class AdminController extends Controller
 {
-    protected $fillable = [
-        'name', 'zipcode', 'address1','address2','district',
-        'state','contry','email','mobile','phone',
-    ];
-}
-****************/
-
-
-/******** Editar database/migrations/....create_users_table.php
-    public function up()
+    public function __construct()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        $this->middleware('auth');
     }
-****************/
 
-
-/******** Editar database/seeds/DatabaseSeeder.php
-use Illuminate\Database\Seeder;
-use App\User;
-use App\Models\Doctor;
-
-class DatabaseSeeder extends Seeder
-{
-    public function run()
+    public function index()
     {
-        User::create([
-            'name'      => 'Mauricio Amorim',
-            'email'     => 'mjvamorim@gmail.com',
-            'password'  => bcrypt('123456'),
-        ]);
-        Doctor::create([
-            'name'      => 'Alexandre Magno Viana Amorim',
-            'email'     => 'amvamorim@gmail.com',   
-        ]);
+        return view('admin');
     }
 }
-****************/
 
-$ php artisan migrate
-$ php artisan db:seed
+/* Crie a view admin.blade.php
+@extends('adminlte::page')
+
+@section('title', 'AdminLTE')
+
+@section('content_header')
+    <h1>Dashboard Admin</h1>
+@stop
+
+@section('content')
+    <p>You are logged in!</p>
+@stop
+
+/* Adicione a rota routes/web.php
+Route::get('/admin', 'AdminController@index')->name('admin');
+
+/* config/adminlte
+    'dashboard_url' => 'admin',
+
+
