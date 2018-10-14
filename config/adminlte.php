@@ -32,7 +32,7 @@ return [
 
     'logo' => '<b>Pegasus</b>',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>Pegasus</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'red-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,61 +108,27 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'Menu Principal',
+
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Clinicas',
+            'url'         => 'admin/clinicas',
+            'icon'        => 'home',
+            //'label'       => 4,
+            //'label_color' => 'success',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Medicos',
+            'url'  => 'admin/medicos',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'text'    => 'Relatórios',
+            'icon'    => 'print',
             'submenu' => [
                 [
                     'text' => 'Level One',
                     'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
                 ],
                 [
                     'text' => 'Level One',
@@ -170,19 +136,7 @@ return [
                 ],
             ],
         ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
-        ],
+        
     ],
 
     /*
