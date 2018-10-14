@@ -1,0 +1,95 @@
+$ laravel new clinic
+$ cd clinic
+$ php artisan make:model Models\\Doctor -m
+$ php artisan make:controller AdminController
+$ php artisan make:controller DoctorController
+$ php artisan make:auth
+
+/* Criar Banco de dados no MySQL */
+/* Editar o arquivo '.env' 
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=clinic
+DB_USERNAME=root
+DB_PASSWORD=root
+LOCALE=pt-br
+*/
+
+/* Editar config/app.php
+   'locale' => env('LOCALE','en'),
+*/
+
+/******** Editar database/migrations/....create_doctors_table.php
+public function up()
+    {
+        Schema::create('doctors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('zipcode')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
+            $table->string('district')->nullable();
+            $table->string('state')->default('RJ')->nullable();
+            $table->string('contry')->default('Brasil')->nullable();
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('phone')->nullable();
+            $table->timestamps();
+        });
+    }
+****************/
+
+/******** Editar app/Models/Medico.php
+
+class Doctor extends Model
+{
+    protected $fillable = [
+        'name', 'zipcode', 'address1','address2','district',
+        'state','contry','email','mobile','phone',
+    ];
+}
+****************/
+
+
+/******** Editar database/migrations/....create_users_table.php
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('image')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+****************/
+
+
+/******** Editar database/seeds/DatabaseSeeder.php
+use Illuminate\Database\Seeder;
+use App\User;
+use App\Models\Doctor;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run()
+    {
+        User::create([
+            'name'      => 'Mauricio Amorim',
+            'email'     => 'mjvamorim@gmail.com',
+            'password'  => bcrypt('123456'),
+        ]);
+        Doctor::create([
+            'name'      => 'Alexandre Magno Viana Amorim',
+            'email'     => 'amvamorim@gmail.com',   
+        ]);
+    }
+}
+****************/
+
+$ php artisan migrate
+$ php artisan db:seed
