@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $connection = 'main';
+
     protected $fillable = [
         'name', 'email', 'password','image'
     ];

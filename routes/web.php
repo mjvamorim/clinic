@@ -14,5 +14,10 @@
 
 Auth::routes();
 
-Route::get('/', 'AdminController@index')->name('admin');
+
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/home', 'AdminController@index')->name('home');
+Route::get('/', 'AdminController@index')->name('home');
+Route::get('/doctor/{doctor}', 'AdminController@doctor')->name('doctor')->middleware(['tenant']);
+Route::get('/doctorModel/{doctor}', 'AdminController@doctorViaModel')->name('doctorModel')->middleware(['tenant']);
+Route::get('/company/{company}', 'SelectTenantController@select')->name('selectcompany');
