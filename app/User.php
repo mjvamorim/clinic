@@ -13,7 +13,7 @@ class User extends Authenticatable
     protected $connection = 'main';
 
     protected $fillable = [
-        'name', 'email', 'password','image'
+        'name', 'email', 'password','image','mobile'
     ];
 
     protected $hidden = [

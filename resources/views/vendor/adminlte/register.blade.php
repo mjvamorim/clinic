@@ -58,6 +58,16 @@
                         </span>
                     @endif
                 </div>
+                <div class="form-group has-feedback {{ $errors->has('mobile') ? 'has-error' : '' }}">
+                    <input type="text" name="mobile" class="form-control" value="{{ old('mobile') }}"
+                           placeholder="{{ trans('adminlte::adminlte.mobile') }}">
+                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                    @if ($errors->has('mobile'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('mobile') }}</strong>
+                        </span>
+                    @endif
+                </div>
                 <button type="submit"
                         class="btn btn-primary btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.register') }}</button>

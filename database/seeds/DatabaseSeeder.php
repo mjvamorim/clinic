@@ -9,20 +9,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        User::create([
-            'name'      => 'Mauricio Amorim',
-            'email'     => 'mjvamorim@gmail.com',
-            'password'  => bcrypt('123456'),
-        ]);
-        User::create([
-            'name'      => 'Fabiana Amorim',
-            'email'     => 'frgamorim@gmail.com',
-            'password'  => bcrypt('123456'),
-        ]);
-/*         Doctor::create([
-            'name'      => 'Alexandre Magno Viana Amorim',
-            'email'     => 'amvamorim@gmail.com',   
-        ]); */
         Company::create([
             'name'      => 'Consultorio 1 ',
             'mysql_host' => 'localhost',
@@ -37,5 +23,21 @@ class DatabaseSeeder extends Seeder
             'mysql_username' => 'root',
             'mysql_password' => 'root',  
         ]);
+        User::create([
+            'name'      => 'Mauricio Amorim',
+            'email'     => 'mjvamorim@gmail.com',
+            'password'  => bcrypt('123456'),
+            'type'      => 'Admin',
+        ]);
+        User::create([
+            'name'      => 'Fabiana Amorim',
+            'email'     => 'frgamorim@gmail.com',
+            'password'  => bcrypt('123456'),
+            'company_id'=> 2,
+        ]);
+/*         Doctor::create([
+            'name'      => 'Alexandre Magno Viana Amorim',
+            'email'     => 'amvamorim@gmail.com',   
+        ]); */
     }
 }

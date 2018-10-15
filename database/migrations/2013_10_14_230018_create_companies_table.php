@@ -20,6 +20,15 @@ class CreateCompaniesTable extends Migration
             $table->string('mysql_database');
             $table->string('mysql_username');
             $table->string('mysql_password');
+            $table->string('zipcode')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
+            $table->string('district')->nullable();
+            $table->string('state')->default('RJ')->nullable();
+            $table->string('contry')->default('Brasil')->nullable();
+            $table->string('email')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('phone')->nullable();
 
             
             $table->timestamps();

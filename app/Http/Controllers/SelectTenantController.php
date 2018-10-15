@@ -23,9 +23,8 @@ class SelectTenantController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function select(Request $request,  $company, Doctor $doctor) {
-         $this->reconnect($this->company->findOrFail($company)); 
+        $this->reconnect($this->company->findOrFail($company)); 
         $request->session()->put('tenant', $company);
         return '</br>'.$doctor->all();
-        //return redirect('/');
     }
 }

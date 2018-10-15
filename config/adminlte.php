@@ -32,7 +32,7 @@ return [
 
     'logo' => '<b>Pegasus</b>',
 
-    'logo_mini' => '<b>Pegasus</b>',
+    'logo_mini' => '<b>P</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,34 +108,67 @@ return [
     */
 
     'menu' => [
-        'Menu Principal',
+        [
+            'text' => 'Exames',
+            'url'  => 'admin/empresas',
+            'icon' => 'book',
+        ],
+        [
+            'text' => 'Consultas',
+            'url'  => 'admin/empresas',
+            'icon' => 'briefcase',
+        ],
+
 
         [
-            'text'        => 'Clinicas',
-            'url'         => 'admin/clinicas',
-            'icon'        => 'home',
-            //'label'       => 4,
-            //'label_color' => 'success',
-        ],
-        [
-            'text' => 'Medicos',
-            'url'  => 'admin/medicos',
-            'icon' => 'user',
-        ],
-        [
-            'text'    => 'Relatórios',
-            'icon'    => 'print',
+            'text'    => 'Cadastros',
+            'icon'    => 'file',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text'        => 'Pacientes',
+                    'url'         => 'admin/clinicas',
+                    'icon'        => 'user-md',
                 ],
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text'        => 'Clinicas',
+                    'url'         => 'admin/clinicas',
+                    'icon'        => 'hospital-o',
+                ],
+                [
+                    'text'        => 'Convenios',
+                    'url'         => 'admin/convenios',
+                    'icon'        => 'medkit',
+                ],
+                [
+                    'text' => 'Medicos',
+                    'url'  => 'admin/medicos',
+                    'icon' => 'stethoscope',
+                ],
+                [
+                    'text' => 'Tipos de Exames',
+                    'url'  => 'admin/medicos',
+                    'icon' => 'heartbeat',
                 ],
             ],
         ],
+        [
+            'text'    => 'Administração',
+            'icon'    => 'building',
+            'can'     => 'admin',
+            'submenu' => [
+                [
+                    'text'        => 'Usuarios',
+                    'url'         => 'admin/usuarios',
+                    'icon'        => 'user',
+                ],
+                [
+                    'text' => 'Empresas',
+                    'url'  => 'admin/empresas',
+                    'icon' => 'institution',
+                ],
+            ],
+        ],
+
         
     ],
 
