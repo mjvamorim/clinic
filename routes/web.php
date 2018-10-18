@@ -21,3 +21,4 @@ Route::get('/', 'AdminController@index')->name('home');
 Route::get('/doctor/{doctor}', 'AdminController@doctor')->name('doctor')->middleware(['tenant']);
 Route::get('/doctorModel/{doctor}', 'AdminController@doctorViaModel')->name('doctorModel')->middleware(['tenant']);
 Route::get('/company/{company}', 'SelectTenantController@select')->name('selectcompany');
+Route::resource('/admin/company','CompanyController');

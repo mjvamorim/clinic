@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Company;
 use App\Models\Doctor;
 use App\Http\Middleware\Tenant;
@@ -25,6 +26,11 @@ class SelectTenantController extends Controller
     public function select(Request $request,  $company, Doctor $doctor) {
         $this->reconnect($this->company->findOrFail($company)); 
         $request->session()->put('tenant', $company);
-        return '</br>'.$doctor->all();
+        //return Doctor::all().'</br>'.Doctor::getTableName();
+
+        
+        //$columns = Doctor::getColumns();
+        $columns = Doctor::getFillableFields();
+        dd($columns); 
     }
 }

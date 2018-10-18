@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'red-light',
+    'skin' => 'green-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ return [
                 ],
                 [
                     'text' => 'Empresas',
-                    'url'  => 'admin/empresas',
+                    'url'  => 'admin/company',
                     'icon' => 'institution',
                 ],
             ],

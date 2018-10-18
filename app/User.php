@@ -24,6 +24,6 @@ class User extends Authenticatable
         if($this->image) {
             return $this->image;
         } 
-        return 'img/users/0000-sem-foto.jpg';
+        return '/img/users/0000-sem-foto.jpg';
     }
 }

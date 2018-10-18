@@ -68,11 +68,11 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                <div class="user-panel">
+                {{-- <div class="user-panel">
                     <div class="pull-left image">
-                    <img src="img/pegasus.jpg"  alt="Logotipo">
+                    <img src="/img/pegasus.jpg"  alt="Logotipo">
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
