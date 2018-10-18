@@ -15,8 +15,9 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        $columns =  Company::getFillableFields();
-        return view('admin.company.company',compact('companies','columns'));
+        $fillables   =  Company::getFillableFields();
+        $showables = Company::getShowableFields();
+        return view('admin.company.company',compact('companies','fillables','showables'));
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 
 class BaseModel extends Model
 {
+    protected $showable = [];
 
     public static function getTableName()
     {
@@ -24,5 +25,8 @@ class BaseModel extends Model
         return with(new static)->getFillable();
     }
 
-    
+    public static function getShowableFields() {
+        return with(new static)->showable;
+    }
+   
 }
