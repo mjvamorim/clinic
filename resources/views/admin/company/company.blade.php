@@ -12,7 +12,7 @@
 
     <div class="box box-sucess">
         <div class="box-header">
-            <button class="edit-modal btn glyphicon glyphicon-plus-sign" hover="Novo" data-info=""> </button> 
+            <button class="edit-modal btn glyphicon glyphicon-plus-sign" hover="Novo" data-info="{{json_encode($blank)}}"> </button> 
             <h3 class="box-title">Empresas</h3>
         </div>    
 
@@ -31,8 +31,7 @@
                     </thead>
                     <tbody>
                     @foreach ($companies as $company)                        
-                    {{ json_encode($company) }}
-                    <tr>
+                    <tr class="item{{$company->id}}">
                         <td class="text-center">
                             <button class="edit-modal btn fa fa-edit"
                                 data-info="{{json_encode($company)}}">

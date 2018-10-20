@@ -1,2 +1,9 @@
-Email de recuperacao de senha erro
-Fazer a pagina setting com imagem e troca de senha
+Exclusao
+    Mensagem se sucesso
+    Se der erro ao excluir avisar
+Salvar
+    Se inclusao
+        Inserir elemento do datatable e no $companies
+    se alterar
+        Alterar o elemento do datatable e no $companies
+

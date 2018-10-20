@@ -24,7 +24,7 @@
 				</form>
 				<div class="deleteContent">
                     Are you Sure you want to delete <b><span class="dname"></span></b> ? 
-                    <span class="hidden did"></span>
+                    <span class="hidden id"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn actionBtn" data-dismiss="modal">
@@ -42,6 +42,7 @@
 
 @section('js')
 <script>
+    item=""; //Line Table's Content 
     $(document).ready(function () {
         $('#table1').dataTable({
             'paging'      : true,
@@ -54,74 +55,62 @@
     });
 
     $(document).on('click', '.edit-modal', function() {
-        $('#footer_action_button').text(" Update");
+        $('#footer_action_button').text(" Save");
         $('#footer_action_button').addClass('glyphicon-check');
         $('#footer_action_button').removeClass('glyphicon-trash');
         $('.actionBtn').addClass('btn-success');
         $('.actionBtn').removeClass('btn-danger');
         $('.actionBtn').removeClass('delete');
         $('.actionBtn').addClass('edit');
-        $('.modal-title').text('Edit');
+        $('.modal-title').text('Company');
         $('.deleteContent').hide();
         $('.form-horizontal').show();
-		var stuff = $(this).data('info');
-		for(var key in stuff) {
-			$('#'+key).val(stuff[key]);
+		item = $(this).data('info');
+		for(var key in item) {
+			$('#'+key).val(item[key]);
 		}
+        $('.id').text(item["id"]);
 		$('#myModal').modal('show');
     });
 
 
     $('.modal-footer').on('click', '.edit', function() {
+        var data = {'_token': $('input[name=_token]').val()};
+        for (var key in item) {
+            //console.log(key, item[key]);
+            data[key] = $('#'+key).val()
+        }
+        
+        if ($('#id').val()) {
+            method = 'put';
+            url    = '/admin/company/'+ $('.id').text();
+        }
+        else { 
+            method = 'post';
+            url    = '/admin/company/';
+        }
+
         $.ajax({
-            type: 'post',
-            url: '/editItem',
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'id': $("#id").val(),
-                'name': $('#name').val(),
-            },
+            type: method,
+            url: url,
+            dataType:'json',
+            data: data,
             success: function(data) {
                 if (data.errors){
-                    $('#myModal').modal('show');
                     if(data.errors.name) {
                         $('.name_error').removeClass('hidden');
-                        $('.name_error').text("Name can't be empty !");
+                        $('.name_error').text(data.errors.name);
                     }
-                    // if(data.errors.email) {
-                    //     $('.email_error').removeClass('hidden');
-                    //     $('.email_error').text("Email must be a valid one !");
-                    // }
-                    // // if(data.errors.country) {
-                    //     $('.country_error').removeClass('hidden');
-                    //     $('.country_error').text("Country must be a valid one !");
-                    // }
-                    // if(data.errors.salary) {
-                    //     $('.salary_error').removeClass('hidden');
-                    //     $('.salary_error').text("Salary must be a valid format ! (ex: #.##)");
-                    // }
+                    $('#myModal').modal('show');
                 }
-                else {
-                       
+                else {                     
                     $('.error').addClass('hidden');
-                    $('.item' + data.id).replaceWith(
-                        "<tr class='item" + data.id + "'><td>" 
-                        + data.id       + "</td><td>" 
-                        + data.name     + "</td><td>" 
-                        + data.email    + "</td><td>" 
-                        + "<button class='edit-modal btn btn-info' data-info='" 
-                        + data.id       +","
-                        +data.name      +","
-                        +data.email     +","
-                        +"'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-info='" 
-                        + data.id       +","
-                        + data.name     +","
-                        +data.email     +","
-                        +"' ><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>"
-                    );
-                }}
+                    //window.location='/admin/company';
+                }
+            } 
         });
     });
+
     $(document).on('click', '.delete-modal', function() {
         $('#footer_action_button').text(" Delete");
         $('#footer_action_button').removeClass('glyphicon-check');
@@ -133,22 +122,26 @@
         $('.modal-title').text('Delete');
         $('.deleteContent').show();
         $('.form-horizontal').hide();
-        var stuff = $(this).data('info');
-        $('.did').text(stuff["id"]);
-        $('.dname').html(stuff["name"]);
+        item = $(this).data('info');
+		$('.id').text(item["id"]);
+        $('.dname').html(item["name"]);
         $('#myModal').modal('show');
     });
     $('.modal-footer').on('click', '.delete', function() {
         $.ajax({
-            type: 'post',
-            url: '/deleteItem',
+            type: 'delete',
+            url: '/admin/company/'+ $('.id').text(),
             data: {
                 '_token': $('input[name=_token]').val(),
-                'id': $('.did').text()
+                'id': $('.id').text()
             },
             success: function(data) {
-                $('.item' + $('.did').text()).remove();
-            }
+                $('.item' + $('.id').text()).remove();
+                //window.location='/admin/company';
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }  
         });
     });
 </script>

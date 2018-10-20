@@ -12,6 +12,6 @@ class Doctor extends BaseModelTenant
       
     protected $fillable = [
         'name', 'zipcode', 'address1','address2','district',
-        'state','contry','email','mobile','phone',
+        'state','country','email','mobile','phone',
     ];
 }

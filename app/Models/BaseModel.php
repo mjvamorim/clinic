@@ -28,5 +28,13 @@ class BaseModel extends Model
     public static function getShowableFields() {
         return with(new static)->showable;
     }
+
+    public static function blank() {
+        $blank=[];
+        foreach(self::getShowableFields() as $item) {
+            $blank+=[$item['name']=>''];
+        }
+        return $blank;
+    }
    
 }

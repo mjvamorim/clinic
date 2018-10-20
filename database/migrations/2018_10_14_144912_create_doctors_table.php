@@ -21,7 +21,7 @@ class CreateDoctorsTable extends Migration
             $table->string('address2')->nullable();
             $table->string('district')->nullable();
             $table->string('state')->default('RJ')->nullable();
-            $table->string('contry')->default('Brasil')->nullable();
+            $table->string('country')->default('Brasil')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile')->nullable();
             $table->string('phone')->nullable();
