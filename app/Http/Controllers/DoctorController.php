@@ -7,119 +7,84 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Response;
+use DataTables;
 
 class DoctorController extends Controller
-{
-
-    
+{   
     protected $rules = [
         'name' => 'required|min:5|max:50',
         'email' => 'required|email',
     ];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Doctor $new)
+    function index()
     {
-
-        $doctors = Doctor::all();
-        $blank = Doctor::blank();
-        $fillables   =  Doctor::getFillableFields();
-        $showables = Doctor::getShowableFields();
-        return view('admin.doctor.doctor',compact('doctors','fillables','showables','blank'));
+     return view('admin.doctor.doctor');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function getdata()
     {
-        //
+     $doctors = Doctor::all();
+     return DataTables::of($doctors)
+            ->addColumn('action', function($doctor){
+                return '<a href="#" class="btn btn-xs btn-primary edit" id="'.$doctor->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
+            ->make(true);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    function fetchdata(Request $request)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $doctor = new Doctor();
-            $doctor->name = $request->name;
-            $doctor->email = $request->email;
-            $doctor->save();
-            return response()->json($doctor);
-        }
+        $id = $request->input('id');
+        $doctor = Doctor::find($id);
+        $output = array(
+            'name'    =>  $doctor->name,
+            'email'     =>  $doctor->email
+        );
+        echo json_encode($output);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Doctor  $Doctor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Doctor $doctor)
+    function postdata(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Doctor $doctor)
-    {
+        $validation = Validator::make($request->all(), [
+            'name' => 'required',
+            'email'  => 'required',
+        ]);
         
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Doctor $doctor)
-    {
-
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $doctor = Doctor::findOrFail($doctor->id);
-            $doctor->name = $request->name;
-            $doctor->email = $request->email;
-            $doctor->save();
-            return response()->json($doctor);
+        $error_array = array();
+        $success_output = '';
+        if ($validation->fails())
+        {
+            foreach ($validation->messages()->getMessages() as $field_name => $messages)
+            {
+                $error_array[] = $messages; 
+            }
         }
+        else
+        {
+            if($request->get('button_action') == 'insert')
+            {
+                $doctor = new Doctor([
+                    'name'    =>  $request->get('name'),
+                    'email'     =>  $request->get('email')
+                ]);
+                $doctor->save();
+                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+            }
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Doctor $doctor)
-    {
-        $doctor = Doctor::findOrFail($doctor->id);
-        $doctor->delete();
-        return response()->json($doctor);
-    
-
+            if($request->get('button_action') == 'update')
+            {
+                $doctor = Doctor::find($request->get('doctor_id'));
+                $doctor->name = $request->get('name');
+                $doctor->email = $request->get('email');
+                $doctor->save();
+                $success_output = '<div class="alert alert-success">Data Updated</div>';
+            }
+            
+        }
+        
+        $output = array(
+            'error'     =>  $error_array,
+            'success'   =>  $success_output
+        );
+        echo json_encode($output);
     }
 }

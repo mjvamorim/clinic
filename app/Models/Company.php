@@ -1,22 +1,10 @@
 <?php
 
 namespace App\Models;
+use App\Models\BaseModelTenantMain;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Support\TenantConnector;
-
-class Company extends BaseModel
+class Company extends BaseModelTenantMain
 {
-    use TenantConnector;
-       
-    protected $connection = 'main';
-    /**
-     * @return $this
-     */
-    public function connect() {
-        $this->reconnect($this);
-        return $this;
-    }
 
     protected $fillable = [
         'id','name', 'zipcode', 'address1','address2','district',

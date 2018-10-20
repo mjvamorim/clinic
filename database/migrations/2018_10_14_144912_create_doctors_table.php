@@ -15,11 +15,12 @@ class CreateDoctorsTable extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('district')->nullable();
+            $table->string('city')->nullable();
             $table->string('state')->default('RJ')->nullable();
             $table->string('country')->default('Brasil')->nullable();
             $table->string('email')->nullable();

@@ -141,7 +141,7 @@ return [
                 ],
                 [
                     'text' => 'Medicos',
-                    'url'  => 'admin/medicos',
+                    'url'  => 'admin/doctor',
                     'icon' => 'stethoscope',
                 ],
                 [
