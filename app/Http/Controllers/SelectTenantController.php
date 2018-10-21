@@ -26,11 +26,11 @@ class SelectTenantController extends Controller
     public function select(Request $request,  $company, Doctor $doctor) {
         $this->reconnect($this->company->findOrFail($company)); 
         $request->session()->put('tenant', $company);
-        //return Doctor::all().'</br>'.Doctor::getTableName();
+        return Doctor::all().'</br>'.Doctor::getTableName();
 
         
         //$columns = Doctor::getColumns();
-        $columns = Doctor::getFillableFields();
-        dd($columns); 
+        //$columns = Doctor::getFillableFields();
+        //dd($columns); 
     }
 }

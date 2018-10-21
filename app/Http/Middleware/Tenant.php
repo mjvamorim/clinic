@@ -40,7 +40,6 @@ class Tenant {
         // Connect and place the $company object in the view
         $this->reconnect($company);
         $request->session()->put('company', $company);
-        echo '</br> Tenant handle :'.$company->mysql_database.'</br>';  
           
         return $next($request);
     }

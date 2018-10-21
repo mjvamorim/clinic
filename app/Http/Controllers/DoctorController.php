@@ -11,43 +11,39 @@ use DataTables;
 
 class DoctorController extends Controller
 {   
-    protected $rules = [
-        'name' => 'required|min:5|max:50',
-        'email' => 'required|email',
-    ];
+    public function __construct()
+    {
+        $this->middleware('tenant');
+    }
 
     function index()
     {
-     return view('admin.doctor.doctor');
+        $showables  = Doctor::getShowableFields();
+        return view('admin.doctor.doctor',compact('showables'));
     }
 
     function getdata()
     {
-     $doctors = Doctor::all();
-     return DataTables::of($doctors)
+        $doctors = Doctor::all();
+        return DataTables::of($doctors)
             ->addColumn('action', function($doctor){
-                return '<a href="#" class="btn btn-xs btn-primary edit" id="'.$doctor->id.'"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+                $btedit = '<button class="btn edit" id="'.$doctor->id.'" title="Alterar" data-toggle="tooltip" ><i class="glyphicon glyphicon-edit"></i> </button>';
+                $btdelt = '<button class="btn delt" id="'.$doctor->id.'" title="Apagar" data-toggle="tooltip" ><i class="glyphicon glyphicon-trash"></i> </button>';
+                return '<div align="center">'.$btedit.'<span> </span>'.$btdelt.'</div>';
             })
             ->make(true);
     }
 
-    function fetchdata(Request $request)
+    function fetchdata(Request $request,Doctor $doctor )
     {
         $id = $request->input('id');
         $doctor = Doctor::find($id);
-        $output = array(
-            'name'    =>  $doctor->name,
-            'email'     =>  $doctor->email
-        );
-        echo json_encode($output);
+        echo json_encode($doctor);
     }
 
     function postdata(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required',
-            'email'  => 'required',
-        ]);
+        $validation = Validator::make($request->all(), Doctor::getRules());
         
         $error_array = array();
         $success_output = '';
@@ -62,10 +58,9 @@ class DoctorController extends Controller
         {
             if($request->get('button_action') == 'insert')
             {
-                $doctor = new Doctor([
-                    'name'    =>  $request->get('name'),
-                    'email'     =>  $request->get('email')
-                ]);
+                $doctor = new Doctor;
+                $input =  $request->only($doctor->fillable);
+                $doctor->fill($input);
                 $doctor->save();
                 $success_output = '<div class="alert alert-success">Data Inserted</div>';
             }
@@ -73,8 +68,8 @@ class DoctorController extends Controller
             if($request->get('button_action') == 'update')
             {
                 $doctor = Doctor::find($request->get('doctor_id'));
-                $doctor->name = $request->get('name');
-                $doctor->email = $request->get('email');
+                $input =  $request->only($doctor->fillable);
+                $doctor->fill($input);
                 $doctor->save();
                 $success_output = '<div class="alert alert-success">Data Updated</div>';
             }
@@ -83,7 +78,8 @@ class DoctorController extends Controller
         
         $output = array(
             'error'     =>  $error_array,
-            'success'   =>  $success_output
+            'success'   =>  $success_output,
+            'eu'        => 'Mauricio Amorim',
         );
         echo json_encode($output);
     }

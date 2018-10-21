@@ -19,7 +19,6 @@ trait TenantConnector {
     public function reconnect(Company $company) {     
         // Erase the tenant connection, thus making Laravel get the default values all over again.
         DB::purge('tenant');
-        //echo 'TenantConnector reconnect :'.$company->mysql_database.'</br>';   
         
         // Make sure to use the database name we want to establish a connection.
         Config::set('database.connections.tenant.host', $company->mysql_host);

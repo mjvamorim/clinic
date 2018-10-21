@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Models;
-use App\Models\BaseModel;
+namespace App\Models\Tenant;
+use App\Models\Tenant\BaseModel;
 use App\Support\TenantConnector;
 
 class BaseModelTenantMain extends BaseModel

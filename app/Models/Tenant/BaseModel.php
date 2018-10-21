@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 class BaseModel extends Model
 {
     protected $showable = [];
+    protected $rules = [];
 
     public static function getTableName()
     {
@@ -27,6 +28,10 @@ class BaseModel extends Model
 
     public static function getShowableFields() {
         return with(new static)->showable;
+    }
+
+    public static function getRules() {
+        return with(new static)->rules;
     }
 
     public static function blank() {
