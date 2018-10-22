@@ -22,7 +22,7 @@
 
         <div class="box-body">
             <div class="box-body table-responsive no-padding">
-                <table id="doctor_table" class="table table-hover table-bordered" >
+                <table id="dataTable" class="table table-hover table-bordered" >
                     <thead>
                         <tr>
                             @foreach ($showables as $field)
@@ -41,11 +41,10 @@
 
     {{-- Modal Form --}}
 
-
-    <div id="doctorModal" class="modal fade" role="dialog">
+    <div id="formModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="doctor_form">
+                <form method="post" id="formdata">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Add Data</h4>
@@ -53,19 +52,20 @@
                     <div class="modal-body">
                         {{csrf_field()}}
                         <span id="form_output"></span>
-                        
-                        <div class="form-group">
-                            <label>Enter First Name</label>
-                            <input type="text" name="name" id="name" class="form-control" />
+                        <div id="formfields">
+                            @foreach ($showables as $field)
+                            @if($field['form']=='true') 
+                            <div id="form_input" class="form-group">
+                                <label>{{$field['title']}}</label>
+                                <input type="text" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" />
+                            </div>
+                            @endif
+                            @endforeach
                         </div>
-                        
-                        <div class="form-group">
-                            <label>Enter Last Name</label>
-                            <input type="text" name="email" id="email" class="form-control" />
-                        </div>
+
                     </div>
                     <div class="modal-footer">
-                            <input type="hidden" name="doctor_id" id="doctor_id" value="" />
+                        <input type="hidden" name="id" id="id" value="" />
                         <input type="hidden" name="button_action" id="button_action" value="insert" />
                         <input type="submit" name="submit" id="action" value="Add" class="btn btn-info" />
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,11 +74,13 @@
             </div>
         </div>
     </div>
+    
+
 @stop
 @section('js')
 <script>
 $(document).ready(function() {
-    $('#doctor_table').DataTable({
+    $('#dataTable').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": "{{ route('admin.doctor.getdata') }}",
@@ -93,17 +95,19 @@ $(document).ready(function() {
     });
 
     $('#add_data').click(function(){
-        $('#doctorModal').modal('show');
-        $('#doctor_form')[0].reset();
+        $('#formModal').modal('show');
+        $('#formdata')[0].reset();
         $('#form_output').html('');
         $('#button_action').val('insert');
         $('#action').val('Add');
+        $('#formfields').show();
         $('.modal-title').text('Add Data');
     });
 
     $(document).on('click', '.edit', function(){
         var id = $(this).attr("id");
         $('#form_output').html('');
+        $('#formfields').show();
         $.ajax({
             url:"{{route('admin.doctor.fetchdata')}}",
             method:'get',
@@ -111,20 +115,27 @@ $(document).ready(function() {
             dataType:'json',
             success:function(data)
             {
-                $('#name').val(data.name);
-                $('#email').val(data.email);
-                $('#doctor_id').val(id);
-                $('#doctorModal').modal('show');
+                //Coloca os valores nos formulario
+                @foreach ($showables as $field)
+                @if($field['form']=='true') 
+                $('#{{$field["name"]}}').val(data.{{$field["name"]}});
+                @endif
+                @endforeach
+                $('#id').val(id);
+                $('#formModal').modal('show');
                 $('#action').val('Edit');
                 $('.modal-title').text('Edit Data');
                 $('#button_action').val('update');
             }
         })
     });
+
 
     $(document).on('click', '.delt', function(){
         var id = $(this).attr("id");
         $('#form_output').html('');
+        $('#formfields').hide();
+        
         $.ajax({
             url:"{{route('admin.doctor.fetchdata')}}",
             method:'get',
@@ -133,17 +144,17 @@ $(document).ready(function() {
             success:function(data)
             {
                 $('#name').val(data.name);
-                $('#email').val(data.email);
-                $('#doctor_id').val(id);
-                $('#doctorModal').modal('show');
-                $('#action').val('Edit');
-                $('.modal-title').text('Edit Data');
-                $('#button_action').val('update');
+                $('#id').val(id);
+                $('#formModal').modal('show');
+                $('#action').val('Delete');
+                $('.modal-title').text('Delete :'+data.name+'?');
+                $('#button_action').val('delete');
             }
         })
-    });
+    })
 
-    $('#doctor_form').on('submit', function(event){
+   
+    $('#formdata').on('submit', function(event){
         event.preventDefault();
         var form_data = $(this).serialize();
         $.ajax({
@@ -164,16 +175,13 @@ $(document).ready(function() {
                 }
                 else
                 {
-                    $('#form_output').html(data.success);
-                    $('#doctor_form')[0].reset();
-                    $('#action').val('Add');
-                    $('.modal-title').text('Add Data');
-                    $('#button_action').val('insert');
-                    $('#doctor_table').DataTable().ajax.reload();
+                    $('#formModal').modal('hide');
+                    $('#dataTable').DataTable().ajax.reload();
                 }
             }
         })
     });
+
 });
 </script>
 @stop

@@ -22,7 +22,7 @@ class DoctorController extends Controller
         return view('admin.doctor.doctor',compact('showables'));
     }
 
-    function getdata()
+    function getData()
     {
         $doctors = Doctor::all();
         return DataTables::of($doctors)
@@ -34,48 +34,65 @@ class DoctorController extends Controller
             ->make(true);
     }
 
-    function fetchdata(Request $request,Doctor $doctor )
+    function fetchData(Request $request,Doctor $doctor )
     {
         $id = $request->input('id');
         $doctor = Doctor::find($id);
         echo json_encode($doctor);
     }
 
-    function postdata(Request $request)
+
+    function postData(Request $request)
     {
-        $validation = Validator::make($request->all(), Doctor::getRules());
-        
-        $error_array = array();
-        $success_output = '';
-        if ($validation->fails())
+        if($request->get('button_action') == 'delete')
         {
-            foreach ($validation->messages()->getMessages() as $field_name => $messages)
-            {
-                $error_array[] = $messages; 
-            }
-        }
-        else
-        {
-            if($request->get('button_action') == 'insert')
-            {
-                $doctor = new Doctor;
-                $input =  $request->only($doctor->fillable);
-                $doctor->fill($input);
-                $doctor->save();
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+            $id = $request->input('id');
+
+            $deleted = Doctor::destroy($id);
+            if ($deleted) {
+                $error_array = [];
+                $success_output = '<div class="alert alert-success">Data Deleted</div>';
+            } else {
+                $success_output = '<div class="alert alert-danger">Data Deleted</div>';
+                $error_array = [];
             }
 
-            if($request->get('button_action') == 'update')
-            {
-                $doctor = Doctor::find($request->get('doctor_id'));
-                $input =  $request->only($doctor->fillable);
-                $doctor->fill($input);
-                $doctor->save();
-                $success_output = '<div class="alert alert-success">Data Updated</div>';
-            }
-            
         }
-        
+        else {
+
+            $rules = Doctor::getRules();
+            $validation = Validator::make($request->all(), Doctor::getRules());      
+            $error_array = array();
+            $success_output = '';
+            if ($validation->fails())
+            {
+                foreach ($validation->messages()->getMessages() as $field_name => $messages)
+                {
+                    $error_array[] = $messages; 
+                }
+            }
+            else
+            {
+                if($request->get('button_action') == 'insert')
+                {
+                    $doctor = new Doctor;
+                    $input =  $request->only($doctor->fillable);
+                    $doctor->fill($input);
+                    $doctor->save();
+                    $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                }
+
+                if($request->get('button_action') == 'update')
+                {
+                    $doctor = Doctor::find($request->get('id'));
+                    $input =  $request->only($doctor->fillable);
+                    $doctor->fill($input);
+                    $doctor->save();
+                    $success_output = '<div class="alert alert-success">Data Updated</div>';
+                }
+            }
+        }
+            
         $output = array(
             'error'     =>  $error_array,
             'success'   =>  $success_output,

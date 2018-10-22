@@ -1,9 +1,4 @@
-Exclusao
-    Mensagem se sucesso
-    Se der erro ao excluir avisar
-Salvar
-    Se inclusao
-        Inserir elemento do datatable e no $companies
-    se alterar
-        Alterar o elemento do datatable e no $companies
+Doctor.Blade.php
+- Modal para delete
+- Tabela Striped e Hover nao aparece
 

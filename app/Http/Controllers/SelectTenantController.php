@@ -23,14 +23,14 @@ class SelectTenantController extends Controller
      * @param $company
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function select(Request $request,  $company, Doctor $doctor) {
+    public function select(Request $request,  $company) {
+
         $this->reconnect($this->company->findOrFail($company)); 
         $request->session()->put('tenant', $company);
-        return Doctor::all().'</br>'.Doctor::getTableName();
+        $output = array(
+            'tenant'     =>  $company,
+        );
+        echo json_encode($output);
 
-        
-        //$columns = Doctor::getColumns();
-        //$columns = Doctor::getFillableFields();
-        //dd($columns); 
     }
 }
