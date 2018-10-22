@@ -6,7 +6,7 @@
     <li class="dropdown user user-menu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="{{{Auth::user()->getImage() != null ?  Auth::user()->getImage() : '/img/users/0000-semfoto.jpg'}}}" class="user-image" alt="User Image">
-        <span class="hidden-xs">{{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}</span>
+        <span class="hidden-xs">{{{ isset(Auth::user()->name) ? Auth::user()->name.'|'.session()->get('tenant')->name : Auth::user()->email }}}</span>
         </a>
         <ul class="dropdown-menu">
             <!-- User image -->

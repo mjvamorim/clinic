@@ -23,14 +23,17 @@ class SelectTenantController extends Controller
      * @param $company
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function select(Request $request,  $company) {
+    public function select(Request $request,  Company $company) {
 
-        $this->reconnect($this->company->findOrFail($company)); 
+        $this->reconnect($this->company->findOrFail($company->id)); 
         $request->session()->put('tenant', $company);
         $output = array(
             'tenant'     =>  $company,
         );
         echo json_encode($output);
-
+    }
+    public function selectTenant(Request $request, Company $company) {
+        $this->reconnect($this->company->findOrFail($company->id)); 
+        $request->session()->put('tenant', $company);
     }
 }

@@ -191,6 +191,7 @@ $(document).ready(function() {
             dataType:'json',
             success:function(data)
             {
+                window.location ="{{ route('admin.company') }}";
 
             }
         })

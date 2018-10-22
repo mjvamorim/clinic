@@ -1,4 +1,6 @@
 Doctor.Blade.php
-- Modal para delete
+- Login escolher empresa automaticamente
+- Login aparecer nome empresa
+- Traducao
 - Tabela Striped e Hover nao aparece
 

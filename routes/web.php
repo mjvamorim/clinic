@@ -15,13 +15,8 @@
 Auth::routes();
 
 
-Route::get('admin', 'AdminController@index')->name('admin');
-Route::get('home', 'AdminController@index')->name('home');
 Route::get('', 'AdminController@index')->name('home');
-Route::get('doctor/{doctor}', 'AdminController@doctor')->name('doctor')->middleware(['tenant']);
-Route::get('doctorModel/{doctor}', 'AdminController@doctorViaModel')->name('doctorModel')->middleware(['tenant']);
-
-
+Route::get('admin', 'AdminController@index')->name('admin');
 
 Route::get('admin/company', 'CompanyController@index')->name('admin.company');
 Route::get('admin/company/getdata', 'CompanyController@getData')->name('admin.company.getdata');

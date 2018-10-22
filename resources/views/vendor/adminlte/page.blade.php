@@ -31,6 +31,7 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
+                    
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
                             @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
@@ -52,6 +53,11 @@
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                 </a>
+             
+                <a href="{{ route('admin')}}" class="logo">
+                        {{ trans('app.title') }}
+                </a>
+             
             @endif
                 <!-- Navbar Right Menu -->
                 @include('vendor.adminlte.partials.nav-bar')
