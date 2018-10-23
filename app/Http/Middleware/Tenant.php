@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Company;
-use App\Support\TenantConnector;
+use App\Tenant\TenantConnector;
 use Closure;
 
 class Tenant {

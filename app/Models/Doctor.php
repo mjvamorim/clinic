@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Models\Tenant\BaseModelTenant;
+use App\Tenant\Models\BaseModelTenant;
 
 class Doctor extends BaseModelTenant
 {

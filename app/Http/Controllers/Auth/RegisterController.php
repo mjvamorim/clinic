@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\Company;
 use App\Http\Controllers\Controller;
+use App\Tenant\TenantConfigDB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class RegisterController extends Controller
 {
@@ -63,11 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $company = TenantConfigDB::createCompany($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'mobile' => $data['mobile'],
+            'company_id' => $company->id,
         ]);
     }
+
 }

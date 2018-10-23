@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Models\Tenant\BaseModelTenantMain;
+use \App\Tenant\Models\BaseModelTenantMain;
 
 class Company extends BaseModelTenantMain
 {
@@ -9,7 +9,7 @@ class Company extends BaseModelTenantMain
     protected $fillable = [
         'id','name', 'zipcode', 'address1','address2','district',
         'state','country','email','mobile','phone',
-        'mysql_host', 'mysql_database', 'mysql_username', 'mysql_password', ];
+        'db_host', 'db_database', 'db_username', 'db_password', ];
         
     protected $rules = [
         'name' => 'required|min:5|max:50',
@@ -28,10 +28,10 @@ class Company extends BaseModelTenantMain
         ['name'=>'district',       'title'=>'district',       'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
         ['name'=>'state',          'title'=>'state',          'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
         ['name'=>'country',        'title'=>'country',        'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
-        ['name'=>'mysql_host',     'title'=>'mysql_host',     'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
-        ['name'=>'mysql_database', 'title'=>'mysql_database', 'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
-        ['name'=>'mysql_username', 'title'=>'mysql_username', 'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
-        ['name'=>'mysql_password', 'title'=>'mysql_password', 'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
+        ['name'=>'db_host',        'title'=>'db_host',        'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
+        ['name'=>'db_database',    'title'=>'db_database',    'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
+        ['name'=>'db_username',    'title'=>'db_username', 'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
+        ['name'=>'db_password',    'title'=>'db_password', 'datatable'=>'false', 'form'=>'true',  'type'=>'text', ],
     ];
 
 

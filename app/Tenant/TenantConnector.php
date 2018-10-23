@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support;
+namespace App\Tenant;
 
 use App\Models\Company;
 use Illuminate\Support\Facades\Config;
@@ -21,10 +21,10 @@ trait TenantConnector {
         DB::purge('tenant');
         
         // Make sure to use the database name we want to establish a connection.
-        Config::set('database.connections.tenant.host', $company->mysql_host);
-        Config::set('database.connections.tenant.database', $company->mysql_database);
-        Config::set('database.connections.tenant.username', $company->mysql_username);
-        Config::set('database.connections.tenant.password', $company->mysql_password);
+        Config::set('database.connections.tenant.host', $company->db_host);
+        Config::set('database.connections.tenant.database', $company->db_database);
+        Config::set('database.connections.tenant.username', $company->db_username);
+        Config::set('database.connections.tenant.password', $company->db_password);
         
         // Rearrange the connection data
         DB::reconnect('tenant');

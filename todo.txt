@@ -10,9 +10,8 @@ drop database if exists clinic;
 drop database if exists clinic1;
 drop database if exists clinic2;
 
-create database clinic;
-create database clinic1;
-create database clinic2;
+create database if not exists clinic;
+
 
 
 

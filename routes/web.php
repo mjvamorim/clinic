@@ -22,7 +22,7 @@ Route::get('admin/company', 'CompanyController@index')->name('admin.company');
 Route::get('admin/company/getdata', 'CompanyController@getData')->name('admin.company.getdata');
 Route::get('admin/company/fetchdata', 'CompanyController@fetchData')->name('admin.company.fetchdata');
 Route::post('admin/company/postdata', 'CompanyController@postData')->name('admin.company.postdata');
-Route::get('admin/company/{company}', 'SelectTenantController@select')->name('selectcompany');
+Route::get('admin/company/{company}', 'TenantController@select')->name('selectcompany');
 
 
 Route::get('admin/doctor', 'DoctorController@index')->name('admin.doctor');

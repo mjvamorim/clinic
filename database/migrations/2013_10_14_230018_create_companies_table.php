@@ -16,10 +16,10 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('mysql_host')->default('localhost')->nullable();
-            $table->string('mysql_database')->default('clinic1')->nullable();
-            $table->string('mysql_username')->default('root')->nullable();
-            $table->string('mysql_password')->default('root')->nullable();
+            $table->string('db_host')->default('localhost')->nullable();
+            $table->string('db_database')->default('clinic1')->nullable();
+            $table->string('db_username')->default('root')->nullable();
+            $table->string('db_password')->default('root')->nullable();
             $table->string('zipcode')->nullable();
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
