@@ -19,7 +19,8 @@ class DoctorController extends Controller
     function index()
     {
         $showables  = Doctor::getShowableFields();
-        return view('admin.doctor.doctor',compact('showables'));
+        $model = 'doctor';
+        return view('admin.model',compact('showables','model'));
     }
 
     function getData()

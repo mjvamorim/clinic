@@ -17,7 +17,7 @@ class Doctor extends BaseModelTenant
     protected $showable = [
         ['name'=>'id',       'title'=>'Id',       'datatable'=>'false', 'form'=>'false','type'=>'id',   ],
         ['name'=>'name',     'title'=>'Nome',     'datatable'=>'true',  'form'=>'true', 'type'=>'text', ],
-        ['name'=>'email',    'title'=>'Email',    'datatable'=>'false',  'form'=>'true', 'type'=>'text', ],
+        ['name'=>'email',    'title'=>'Email',    'datatable'=>'true',  'form'=>'true', 'type'=>'text', ],
         ['name'=>'mobile',   'title'=>'Celular',  'datatable'=>'true',  'form'=>'true', 'type'=>'text', ], 
         ['name'=>'phone',    'title'=>'Phone',    'datatable'=>'false', 'form'=>'true', 'type'=>'text', ],
         ['name'=>'zipcode',  'title'=>'ZipCode',  'datatable'=>'false', 'form'=>'true', 'type'=>'text', ],

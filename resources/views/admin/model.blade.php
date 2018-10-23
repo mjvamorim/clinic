@@ -10,11 +10,15 @@
 @section('content')
     {{-- List of model --}}
     {{ csrf_field() }}
+    @php($index = 'admin.'.$model);
+    @php($fetch = 'admin.'.$model.'.fetchdata')
+    @php($post = 'admin.'.$model.'.postdata')
+    @php($get = 'admin.'.$model.'.getdata')
 
 
     <div class="box box-sucess">
         <div class="box-header">
-            <h3 class="box-title">Company</h3>
+            <h3 class="box-title">{{ucwords($model)}}</h3>
             <div align="right">
                 <button name="add" id="add_data" class="edit-modal btn glyphicon glyphicon-plus-sign" title="Cadastrar novo item" data-toggle="tooltip"  > </button> 
             </div>
@@ -83,7 +87,7 @@ $(document).ready(function() {
     $('#dataTable').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{ route('admin.company.getdata') }}",
+        "ajax": "{{ route($get) }}",
         "columns":[
             @foreach ($showables as $field)
             @if($field['datatable']=='true') 
@@ -109,7 +113,7 @@ $(document).ready(function() {
         $('#form_output').html('');
         $('#formfields').show();
         $.ajax({
-            url:"{{route('admin.company.fetchdata')}}",
+            url:"{{route($fetch)}}",
             method:'get',
             data:{id:id},
             dataType:'json',
@@ -137,7 +141,7 @@ $(document).ready(function() {
         $('#formfields').hide();
         
         $.ajax({
-            url:"{{route('admin.company.fetchdata')}}",
+            url:"{{route($fetch)}}",
             method:'get',
             data:{id:id},
             dataType:'json',
@@ -158,7 +162,7 @@ $(document).ready(function() {
         event.preventDefault();
         var form_data = $(this).serialize();
         $.ajax({
-            url:"{{ route('admin.company.postdata') }}",
+            url:"{{ route($post) }}",
             method:"POST",
             data:form_data,
             dataType:"json",
@@ -191,7 +195,7 @@ $(document).ready(function() {
             dataType:'json',
             success:function(data)
             {
-                window.location ="{{ route('admin.company') }}";
+                window.location ="{{ route($index) }}";
 
             }
         })

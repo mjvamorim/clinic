@@ -15,7 +15,8 @@ class CompanyController extends Controller
     function index()
     {
         $showables  = Company::getShowableFields();
-        return view('admin.company.company',compact('showables'));
+        $model = 'company';
+        return view('admin.model',compact('showables','model'));
     }
 
     function getData()
