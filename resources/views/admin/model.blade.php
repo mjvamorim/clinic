@@ -12,8 +12,8 @@
     {{ csrf_field() }}
     @php($index = 'admin.'.$model);
     @php($fetch = 'admin.'.$model.'.fetchdata')
-    @php($post = 'admin.'.$model.'.postdata')
-    @php($get = 'admin.'.$model.'.getdata')
+    @php($post  = 'admin.'.$model.'.postdata')
+    @php($get   = 'admin.'.$model.'.getdata')
 
 
     <div class="box box-sucess">
@@ -60,8 +60,10 @@
                             @foreach ($showables as $field)
                             @if($field['form']=='true') 
                             <div id="form_input" class="form-group">
+                                @if($field['type']=='text') 
                                 <label>{{$field['title']}}</label>
                                 <input type="text" name="{{$field['name']}}" id="{{$field['name']}}" class="form-control" />
+                                @endif
                             </div>
                             @endif
                             @endforeach

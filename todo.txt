@@ -1,16 +1,10 @@
-Doctor.Blade.php
-- Login escolher empresa automaticamente
-- Login aparecer nome empresa
+- Cadastro do Usuarios
+- Alterar Figura por arrastar soltar
 - Traducao
 - Tabela Striped e Hover nao aparece
 
 
-
-drop database if exists clinic;
-drop database if exists clinic1;
-drop database if exists clinic2;
-
-create database if not exists clinic;
+php artisan db:seed --class=DoctorsTableSeeder
 
 
 

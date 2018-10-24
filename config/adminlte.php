@@ -110,7 +110,7 @@ return [
     'menu' => [
         [
             'text' => 'Exames',
-            'url'  => 'admin/empresas',
+            'url'  => 'admin/exam',
             'icon' => 'book',
         ],
         [
@@ -158,7 +158,7 @@ return [
             'submenu' => [
                 [
                     'text'        => 'Usuarios',
-                    'url'         => 'admin/usuarios',
+                    'url'         => 'admin/user',
                     'icon'        => 'user',
                 ],
                 [

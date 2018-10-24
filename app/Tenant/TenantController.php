@@ -28,9 +28,9 @@ class TenantController extends Controller
     public function select(Request $request,  Company $company) {
 
         TenantConfigDB::createDatabase($company);
-
         $this->reconnect($this->company->findOrFail($company->id)); 
         $request->session()->put('tenant', $company);
+        TenantConfigDB::createTenantTables();
         $output = array(
             'tenant'     =>  $company,
         );
@@ -40,5 +40,6 @@ class TenantController extends Controller
         TenantConfigDB::createDatabase($company);
         $this->reconnect($this->company->findOrFail($company->id)); 
         $request->session()->put('tenant', $company);
+        TenantConfigDB::createTenantTables();
     }
 }

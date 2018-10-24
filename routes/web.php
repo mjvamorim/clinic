@@ -29,3 +29,15 @@ Route::get('admin/doctor', 'DoctorController@index')->name('admin.doctor');
 Route::get('admin/doctor/getdata', 'DoctorController@getData')->name('admin.doctor.getdata');
 Route::get('admin/doctor/fetchdata', 'DoctorController@fetchData')->name('admin.doctor.fetchdata');
 Route::post('admin/doctor/postdata', 'DoctorController@postData')->name('admin.doctor.postdata');
+
+Route::get('admin/user', 'UserController@index')->name('admin.user');
+Route::get('admin/user/getdata', 'UserController@getData')->name('admin.user.getdata');
+Route::get('admin/user/fetchdata', 'UserController@fetchData')->name('admin.user.fetchdata');
+Route::post('admin/user/postdata', 'UserController@postData')->name('admin.user.postdata');
+
+Route::get('admin/exam', 'ExamController@index')->name('admin.exam');
+Route::get('/images', 'UploadImagesController@create');
+Route::post('/images-save', 'UploadImagesController@store');
+Route::post('/images-delete', 'UploadImagesController@destroy');
+Route::get('/images-show', 'UploadImagesController@index');
+
