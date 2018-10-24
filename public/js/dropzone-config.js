@@ -12,7 +12,7 @@ Dropzone.options.myDropzone = {
     init: function () {
         this.on("removedfile", function (file) {
             $.post({
-                url: '/images-delete',
+                url: '/image-delete',
                 data: {id: file.name, _token: $('[name="_token"]').val()},
                 dataType: 'json',
                 success: function (data) {

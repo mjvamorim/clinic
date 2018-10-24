@@ -14,7 +14,7 @@ class UploadImagesController extends Controller
  
     public function __construct()
     {
-        $this->photos_path = public_path('/images');
+        $this->photos_path = public_path('/img');
     }
  
     /**
@@ -25,7 +25,7 @@ class UploadImagesController extends Controller
     public function index()
     {
         $photos = Upload::all();
-        return view('uploaded-images', compact('photos'));
+        return view('img/uploaded-images', compact('photos'));
     }
  
     /**
@@ -35,7 +35,7 @@ class UploadImagesController extends Controller
      */
     public function create()
     {
-        return view('upload');
+        return view('img/upload');
     }
  
     /**

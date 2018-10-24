@@ -36,8 +36,9 @@ Route::get('admin/user/fetchdata', 'UserController@fetchData')->name('admin.user
 Route::post('admin/user/postdata', 'UserController@postData')->name('admin.user.postdata');
 
 Route::get('admin/exam', 'ExamController@index')->name('admin.exam');
-Route::get('/images', 'UploadImagesController@create');
-Route::post('/images-save', 'UploadImagesController@store');
-Route::post('/images-delete', 'UploadImagesController@destroy');
-Route::get('/images-show', 'UploadImagesController@index');
+
+Route::get ('image', 'UploadImagesController@create');
+Route::post('image-save', 'UploadImagesController@store');
+Route::post('image-delete', 'UploadImagesController@destroy');
+Route::get ('image-show', 'UploadImagesController@index');
 
