@@ -45,8 +45,9 @@ class User extends Authenticatable
 
     public function getImage() {
         if($this->image) {
-            return $this->image;
+            return '/img/users/'.$this->image;
         } 
         return '/img/users/0000-sem-foto.jpg';
     }
+
 }

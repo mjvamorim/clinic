@@ -39,9 +39,10 @@ class TenantConfigDB {
             Schema::connection('tenant')->create('doctors', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
-                $table->string('zipcode')->nullable();
-                $table->string('address1')->nullable();
-                $table->string('address2')->nullable();
+                $table->string('postal_code')->nullable();
+                $table->string('street')->nullable();
+                $table->string('number')->nullable();
+                $table->string('complement')->nullable();
                 $table->string('district')->nullable();
                 $table->string('city')->nullable();
                 $table->string('state')->default('RJ')->nullable();

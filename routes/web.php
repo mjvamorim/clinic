@@ -13,10 +13,15 @@
 
 
 Auth::routes();
+// URL::forceScheme('https');
 
 
 Route::get('', 'AdminController@index')->name('home');
 Route::get('admin', 'AdminController@index')->name('admin');
+
+Route::get('mp', 'MercadoPagoController@mp')->name('mp');
+Route::get('mppost', 'MercadoPagoController@mpPost')->name('mppost');
+Route::get('mpboleto', 'MercadoPagoController@mpBoleto')->name('mpboleto');
 
 Route::get('admin/company', 'CompanyController@index')->name('admin.company');
 Route::get('admin/company/getdata', 'CompanyController@getData')->name('admin.company.getdata');
@@ -34,6 +39,8 @@ Route::get('admin/user', 'UserController@index')->name('admin.user');
 Route::get('admin/user/getdata', 'UserController@getData')->name('admin.user.getdata');
 Route::get('admin/user/fetchdata', 'UserController@fetchData')->name('admin.user.fetchdata');
 Route::post('admin/user/postdata', 'UserController@postData')->name('admin.user.postdata');
+Route::post('admin/user/storePhoto', 'UserController@storeUserPhoto')->name('admin.user.storephoto');
+
 
 Route::get('admin/exam', 'ExamController@index')->name('admin.exam');
 

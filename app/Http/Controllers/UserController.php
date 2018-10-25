@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 use Validator;
 use Response;
 use DataTables;
+use Auth;
 
 class UserController extends Controller
 {   
+    private $photos_path;
+ 
     public function __construct()
     {
+        $this->photos_path = public_path('/img/users');
     }
 
     function index()
@@ -100,4 +106,46 @@ class UserController extends Controller
         );
         echo json_encode($output);
     }
+
+    public function storeUserPhoto(Request $request)
+    {
+        $photos = $request->file('file');
+ 
+        if (!is_array($photos)) {
+            $photos = [$photos];
+        }
+ 
+        if (!is_dir($this->photos_path)) {
+            mkdir($this->photos_path, 0777);
+        }
+ 
+        $photo = $photos[0];
+        $name = sha1(date('YmdHis') . str_random(30));
+        $save_name = $name . '.' . $photo->getClientOriginalExtension();
+        $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+
+        Image::make($photo)
+            ->resize(250, null, function ($constraints) {
+                $constraints->aspectRatio();
+            })
+            ->save($this->photos_path . '/' . $resize_name);
+
+        $photo->move($this->photos_path, $save_name);
+
+        $upload = new Upload();
+        $upload->filename = $save_name;
+        $upload->resized_name = $resize_name;
+        $upload->original_name = basename($photo->getClientOriginalName());
+        $upload->save();
+        
+        $user = User::find(Auth::user()->id);
+        $user->image = $upload->resized_name;
+        $user->save();
+
+        return Response::json([
+            'message' => 'Image saved Successfully'
+        ], 200);
+    }
+ 
+
 }

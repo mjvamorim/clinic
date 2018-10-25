@@ -26,9 +26,9 @@ public function up()
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('zipcode')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('street')->nullable();
+            $table->string('number')->nullable();
             $table->string('district')->nullable();
             $table->string('state')->default('RJ')->nullable();
             $table->string('contry')->default('Brasil')->nullable();
@@ -45,7 +45,7 @@ public function up()
 class Doctor extends Model
 {
     protected $fillable = [
-        'name', 'zipcode', 'address1','address2','district',
+        'name', 'postal_code', 'street','number','district',
         'state','contry','email','mobile','phone',
     ];
 }

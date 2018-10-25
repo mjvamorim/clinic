@@ -13,16 +13,16 @@ class DoctorsTableSeeder extends Seeder
         $faker = Faker::create();
         foreach(range(1,200) as $index) {
             Doctor::insert([
-                'name'      => $faker->name,
-                'email'     => $faker->freeEmail,
-                'zipcode'   => $faker->postcode,
-                'address1'  => $faker->streetAddress,
-                'address2'  => '',
-                'district'  => '',
-                'city'      => $faker->city,
-                'state'     => $faker->stateAbbr,
-                'mobile'    => str_random(10),
-                'phone'     => str_random(10),   
+                'name'        => $faker->name,
+                'email'       => $faker->freeEmail,
+                'mobile'      => $faker->e164PhoneNumber,
+                'phone'       => $faker->e164PhoneNumber,
+                'postal_code' => $faker->postcode,
+                'street'      => $faker->streetAddress,
+                'number'      => $faker->buildingNumber,
+                'district'    => $faker->cityPrefix,
+                'city'        => $faker->city,
+                'state'       => $faker->stateAbbr,
             ]);
         }
     }

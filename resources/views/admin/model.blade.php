@@ -10,7 +10,7 @@
 @section('content')
     {{-- List of model --}}
     {{ csrf_field() }}
-    @php($index = 'admin.'.$model);
+    @php($index = 'admin.'.$model)
     @php($fetch = 'admin.'.$model.'.fetchdata')
     @php($post  = 'admin.'.$model.'.postdata')
     @php($get   = 'admin.'.$model.'.getdata')

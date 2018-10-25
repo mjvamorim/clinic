@@ -11,6 +11,7 @@
         "jeroennoten/laravel-adminlte": "^1.24",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "mercadopago/sdk": "0.5.2",
         "yajra/laravel-datatables-oracle": "^8.0"
     },
     "require-dev": {

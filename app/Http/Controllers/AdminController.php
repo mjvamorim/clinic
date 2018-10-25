@@ -23,7 +23,7 @@ class AdminController extends Controller
         if (auth()->check()) {
             $stc->selectTenant($request, auth()->user()->company);
         }
-        return view('admin');
+        return view('index');
     }
 
 }
