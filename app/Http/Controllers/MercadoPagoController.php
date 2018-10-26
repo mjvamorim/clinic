@@ -17,7 +17,7 @@ class MercadoPagoController extends Controller
 
     public function mp(Request $request)
     {
-        return view('mp.index');
+        return view('mercadopago.mpformcartao');
     }
 
     public function mpPost(Request $request)
