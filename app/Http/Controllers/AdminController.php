@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Doctor;
-use App\Models\Company;
+use App\Tenant\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
@@ -23,7 +22,12 @@ class AdminController extends Controller
         if (auth()->check()) {
             $stc->selectTenant($request, auth()->user()->company);
         }
-        return view('index');
+        return view('admin.index');
+    }
+
+    public function payments() 
+    {
+        return view('admin.payments');
     }
 
 }

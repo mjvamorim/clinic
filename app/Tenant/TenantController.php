@@ -3,10 +3,7 @@
 namespace App\Tenant;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Schema;
-use App\Models\Company;
-use App\Models\Doctor;
-use App\Http\Middleware\Tenant;
+use App\Tenant\Models\Company;
 use App\Tenant\TenantConnector;
 use App\Tenant\TenantConfigDB;
 use App\Http\Controllers\Controller;

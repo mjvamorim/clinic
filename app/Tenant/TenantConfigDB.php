@@ -3,12 +3,9 @@ namespace App\Tenant;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use App\User;
-use App\Models\Doctor;
-use App\Models\Company;
+use App\Tenant\Models\Company;
 
 class TenantConfigDB {
 

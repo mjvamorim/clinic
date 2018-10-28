@@ -18,10 +18,9 @@ class ExamController extends Controller
 
     function index()
     {
-        return view('imageuploader');
-        // $showables  = Exam::getShowableFields();
-        // $model = 'exam';
-        // return view('admin.model',compact('showables','model'));
+        $showables  = Exam::getShowableFields();
+        $model = 'exam';
+        return view('admin.model',compact('showables','model'));
     }
 
     function getData()

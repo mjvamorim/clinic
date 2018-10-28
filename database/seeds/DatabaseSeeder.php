@@ -5,9 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Models\Doctor;
-use App\Models\Company;
-use App\Tenant\TenantConfigDB;
+use App\Tenant\Models\Company;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,7 +25,5 @@ class DatabaseSeeder extends Seeder
             'password'  => bcrypt('123456'),
             'type'      => 'Admin',
         ]);
-        // TenantConfigDB::createTenantTables();
-        // $this->call(DoctorsTableSeeder::class);
     }
 }

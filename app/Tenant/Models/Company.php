@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Tenant\Models;
 use \App\Tenant\Models\BaseModelTenantMain;
 
 class Company extends BaseModelTenantMain
@@ -8,7 +8,7 @@ class Company extends BaseModelTenantMain
 
     protected $fillable = [
         'id','name', 'postal_code', 'street','number',
-        'district', 'complement', 'city',
+         'complement', 'district', 'city',
         'state','country','email','mobile','phone',
         'db_host', 'db_database', 'db_username', 'db_password', ];
         

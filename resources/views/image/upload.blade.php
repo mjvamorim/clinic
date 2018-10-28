@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-10 offset-sm-1">
             <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
-            <form method="post" action="{{ url('/image-save') }}"
+            <form method="post" action="{{ route('image-save') }}"
                   enctype="multipart/form-data" class="dropzone" id="my-dropzone">
                 {{ csrf_field() }}
                 <div class="dz-message">

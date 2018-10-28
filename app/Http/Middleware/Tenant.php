@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Company;
+use App\Tenant\Models\Company;
 use App\Tenant\TenantConnector;
 use Closure;
 

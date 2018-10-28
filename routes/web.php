@@ -17,8 +17,12 @@ Auth::routes();
 
 Route::get('', 'AdminController@index')->name('home');
 Route::get('admin', 'AdminController@index')->name('admin');
-Route::get('mp', 'MercadoPagoController@mp')->name('mp');
-Route::post('mppost', 'MercadoPagoController@mpPost')->name('mppost');
+Route::get('payments', 'AdminController@payments')->name('payments');
+
+// Checkout Transparente Mercado Pago
+// Route::get('mp', 'MercadoPagoController@mp')->name('mp');
+// Route::post('mppost', 'MercadoPagoController@mpPost')->name('mppost');
+
 Route::middleware(['auth','checkpayment'])->group(function () {
 
     Route::get('admin/company', 'CompanyController@index')->name('admin.company');

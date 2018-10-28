@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Models\Company;
-use App\Http\Controllers\Controller;
-use App\Tenant\TenantConfigDB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
+use App\Tenant\TenantConfigDB;
+
 
 class RegisterController extends Controller
 {
