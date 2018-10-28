@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tenant;
+namespace App\Subsystems\Tenant;
 
 use Illuminate\Http\Request;
-use App\Tenant\Models\Company;
-use App\Tenant\TenantConnector;
-use App\Tenant\TenantConfigDB;
+use App\Subsystems\Tenant\Models\Company;
+use App\Subsystems\Tenant\TenantConnector;
+use App\Subsystems\Tenant\TenantConfigDB;
 use App\Http\Controllers\Controller;
 
 class TenantController extends Controller

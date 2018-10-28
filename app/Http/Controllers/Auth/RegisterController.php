@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
-use App\Tenant\TenantConfigDB;
+use App\Subsystems\Tenant\TenantConfigDB;
 
 
 class RegisterController extends Controller

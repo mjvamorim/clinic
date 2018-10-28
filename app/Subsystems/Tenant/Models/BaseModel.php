@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tenant\Models;
+namespace App\Subsystems\Tenant\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Config;
-use App\Tenant\TenantModel;
+use App\Subsystems\Tenant\TenantModel;
 
 
 class BaseModel extends Model

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tenant\Models;
+namespace App\Subsystems\Tenant\Models;
 
-use App\Tenant\Models\BaseModel;
+use App\Subsystems\Tenant\Models\BaseModel;
 
 class BaseModelTenant extends BaseModel
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Tenant\Models\Company;
+use App\Subsystems\Tenant\Models\Company;
 use Closure;
 
 class CheckPayment {

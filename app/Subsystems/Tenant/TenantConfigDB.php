@@ -1,11 +1,11 @@
 <?php
-namespace App\Tenant;
+namespace App\Subsystems\Tenant;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use App\Tenant\Models\Company;
+use App\Subsystems\Tenant\Models\Company;
 
 class TenantConfigDB {
 

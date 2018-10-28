@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Tenant\Models\Company;
-use App\Tenant\TenantConnector;
+use App\Subsystems\Tenant\Models\Company;
+use App\Subsystems\Tenant\TenantConnector;
 use Closure;
 
 class Tenant {

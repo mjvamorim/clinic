@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tenant;
+namespace App\Subsystems\Tenant;
 
-use App\Tenant\Models\Company;
+use App\Subsystems\Tenant\Models\Company;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

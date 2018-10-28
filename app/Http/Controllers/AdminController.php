@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tenant\Models\Company;
+use App\Subsystems\Tenant\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
-use App\Tenant\TenantController;
+use App\Subsystems\Tenant\TenantController;
 
 
 class AdminController extends Controller

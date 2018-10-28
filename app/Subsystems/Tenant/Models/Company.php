@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Tenant\Models;
-use \App\Tenant\Models\BaseModelTenantMain;
+namespace App\Subsystems\Tenant\Models;
+use \App\Subsystems\Tenant\Models\BaseModelTenantMain;
 
 class Company extends BaseModelTenantMain
 {

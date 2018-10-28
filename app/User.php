@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Tenant\Models\Company;
-use App\Tenant\TenantModel;
+use App\Subsystems\Tenant\Models\Company;
+use App\Subsystems\Tenant\TenantModel;
 
 class User extends Authenticatable
 {
@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->belongsTo('App\Tenant\Models\Company');
+        return $this->belongsTo('App\Subsystems\Tenant\Models\Company');
     }
 
     public function getImage() {

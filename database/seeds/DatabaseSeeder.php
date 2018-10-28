@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Tenant\Models\Company;
+use App\Subsystems\Tenant\Models\Company;
 
 class DatabaseSeeder extends Seeder
 {

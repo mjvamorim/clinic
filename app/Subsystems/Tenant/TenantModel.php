@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tenant;
+namespace App\Subsystems\Tenant;
 
 use Illuminate\Support\Facades\Schema;
 
