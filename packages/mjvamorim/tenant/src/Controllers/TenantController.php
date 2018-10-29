@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Subsystems\Tenant;
+namespace Amorim\Tenant\Controllers;
 
 use Illuminate\Http\Request;
-use App\Subsystems\Tenant\Models\Company;
-use App\Subsystems\Tenant\TenantConnector;
-use App\Subsystems\Tenant\TenantConfigDB;
 use App\Http\Controllers\Controller;
+
+use Amorim\Tenant\Models\Company;
+use Amorim\Tenant\TenantConfigDB;
+use Amorim\Tenant\TenantConnector;
+
 
 class TenantController extends Controller
 {
@@ -15,6 +17,13 @@ class TenantController extends Controller
     public function __construct()
     {
         $this->company = Company::findOrFail(1);
+        // $this->company = new Company;
+        // $this->company->id=1;
+        // $this->company->db_host = 'localhost';
+        // $this->company->db_database = 'clinic1';
+        // $this->company->db_user = 'root';
+        // $this->company->db_password = 'root';
+
     }
     /**
      * @GET

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Subsystems\Tenant\Models;
 
-use App\Subsystems\Tenant\Models\BaseModel;
-use App\Subsystems\Tenant\TenantConnector;
+namespace Amorim\Tenant\Models;
+
+use Amorim\Tenant\Models\BaseModel;
+use Amorim\Tenant\TenantConnector;
 
 class BaseModelTenantMain extends BaseModel
 {

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Subsystems\Tenant;
+
+namespace Amorim\Tenant;
 
 use Illuminate\Support\Facades\Schema;
 

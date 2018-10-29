@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Subsystems\Tenant;
+namespace Amorim\Tenant;
 
-use App\Subsystems\Tenant\Models\Company;
+
+use Amorim\Tenant\Models\Company;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

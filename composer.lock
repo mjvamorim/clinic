@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d51f92d57f4c3fc9182bd8948504ac6",
+    "content-hash": "b8fdf70ca07f0ed402d98bfbeabc6d76",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -972,7 +972,7 @@
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "package/mjvamorim/subscriptions",
+                "url": "packages/mjvamorim/subscriptions",
                 "reference": "5ff075c71dd6cada9a7f8350740cb794b474bdf0",
                 "shasum": null
             },
@@ -994,6 +994,30 @@
                 "plan",
                 "subscriptions"
             ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "mjvamorim/tenant",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/mjvamorim/tenant",
+                "reference": "9a3c385b00706a9bb133665967fbb2ead73eab6c",
+                "shasum": null
+            },
+            "type": "library",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mauricio Amorim",
+                    "email": "mjvamorim@gmail.com"
+                }
+            ],
+            "description": "Package to Choise Database Based on Company_id field",
             "transport-options": {
                 "symlink": true
             }
@@ -4499,7 +4523,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mjvamorim/subscriptions": 20
+        "mjvamorim/subscriptions": 20,
+        "mjvamorim/tenant": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

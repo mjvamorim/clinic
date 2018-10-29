@@ -162,8 +162,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Amorim\Tenant\TenantServiceProvider::class,
         Amorim\Subscriptions\SubscriptionsServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */

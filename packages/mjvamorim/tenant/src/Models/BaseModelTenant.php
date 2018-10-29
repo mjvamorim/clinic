@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Subsystems\Tenant\Models;
+namespace Amorim\Tenant\Models;
 
-use App\Subsystems\Tenant\Models\BaseModel;
+use Amorim\Tenant\Models\BaseModel;
 
 class BaseModelTenant extends BaseModel
 {

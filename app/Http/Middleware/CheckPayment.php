@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Subsystems\Tenant\Models\Company;
+use Amorim\Tenant\Models\Company;
 use Closure;
 
 class CheckPayment {

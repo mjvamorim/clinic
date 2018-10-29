@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Subsystems\Tenant\Models;
+namespace Amorim\Tenant\Models;
+
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Config;
-use App\Subsystems\Tenant\TenantModel;
+use Amorim\Tenant\TenantModel;
 
 
 class BaseModel extends Model

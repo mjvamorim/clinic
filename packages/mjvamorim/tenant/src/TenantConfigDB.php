@@ -1,11 +1,12 @@
 <?php
-namespace App\Subsystems\Tenant;
+namespace Amorim\Tenant;
+
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use App\Subsystems\Tenant\Models\Company;
+use Amorim\Tenant\Models\Company;
 
 class TenantConfigDB {
 

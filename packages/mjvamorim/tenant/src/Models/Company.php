@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Subsystems\Tenant\Models;
-use \App\Subsystems\Tenant\Models\BaseModelTenantMain;
+
+namespace Amorim\Tenant\Models;
+
+use \Amorim\Tenant\Models\BaseModelTenantMain;
 
 class Company extends BaseModelTenantMain
 {

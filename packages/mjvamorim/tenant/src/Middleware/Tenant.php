@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Amorim\Tenant\Middleware;
 
-use App\Subsystems\Tenant\Models\Company;
-use App\Subsystems\Tenant\TenantConnector;
+use Amorim\Tenant\Models\Company;
+use Amorim\Tenant\TenantConnector;
 use Closure;
 
 class Tenant {
