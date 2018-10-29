@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
             $table->unsignedInteger('company_id')->default(1)->nullable();
             $table->string('type')->default('User')->nullable();
+            $table->string('refnumber')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('company_id')->references('id')->on('companies');
