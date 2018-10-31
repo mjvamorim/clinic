@@ -1,4 +1,3 @@
-<a mp-mode="dftl" href="http://mpago.la/1qzk2v" name="MP-payButton" class='blue-ar-l-rn-none'>Assinar</a>
 <script type="text/javascript">
     (function() {
         function $MPC_load() {
