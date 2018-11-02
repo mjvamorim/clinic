@@ -19,16 +19,22 @@ Route::get('', 'AdminController@index')->name('home');
 Route::get('admin', 'AdminController@index')->name('admin');
 Route::get('payments', 'AdminController@payments')->name('payments');
 
+
+
 // Checkout Transparente Mercado Pago
 // Route::get('mp', 'MercadoPagoController@mp')->name('mp');
 // Route::post('mppost', 'MercadoPagoController@mpPost')->name('mppost');
 
 Route::middleware(['auth','checkpayment'])->group(function () {
 
+
+
     Route::get('admin/company', 'CompanyController@index')->name('admin.company');
     Route::get('admin/company/getdata', 'CompanyController@getData')->name('admin.company.getdata');
     Route::get('admin/company/fetchdata', 'CompanyController@fetchData')->name('admin.company.fetchdata');
     Route::post('admin/company/postdata', 'CompanyController@postData')->name('admin.company.postdata');
+
+
 
     Route::get('admin/doctor', 'DoctorController@index')->name('admin.doctor');
     Route::get('admin/doctor/getdata', 'DoctorController@getData')->name('admin.doctor.getdata');

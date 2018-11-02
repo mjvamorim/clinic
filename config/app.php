@@ -163,6 +163,7 @@ return [
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Amorim\Tenant\TenantServiceProvider::class,
+        Amorim\Crud\CrudServiceProvider::class,
         Amorim\Subscriptions\SubscriptionsServiceProvider::class,
         
         /*
